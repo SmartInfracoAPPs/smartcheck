@@ -11,7 +11,7 @@ services:
       - '5050:5050'
     environment:
       - FLASK_ENV=development
-      - FLASK_APP=app/app.py  # Adjusted path to app.py
+      - FLASK_APP=app.py  # Adjusted path to app.py
     volumes:
       - '/data/coolify/applications/zg0ocw0/app:/app'  # Adjusted volume mapping
     networks:
