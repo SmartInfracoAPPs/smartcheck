@@ -4,8 +4,8 @@ services:
   web:
     build: .
     ports:
-      - "5050:5050"
+      - "5050:5050"  # Exposes port 5050 on host and container
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=development  # Sets Flask environment to development
     volumes:
-      - ./home/storage/mstracker/:/app
+      - ./home/storage/mstracker/:/app  # Mounts host directory to container directory
