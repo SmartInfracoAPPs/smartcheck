@@ -8,4 +8,4 @@ services:
     environment:
       - FLASK_ENV=development  # Sets Flask environment to development
     volumes:
-      - ./home/storage/mstracker/:/app  # Mounts host directory to container directory
+      - . :/app  # Mounts host directory to container directory
