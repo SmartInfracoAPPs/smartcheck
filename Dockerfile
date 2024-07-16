@@ -3,8 +3,12 @@ FROM python:3.9-slim
 WORKDIR /app
 
 COPY requirements.txt .
+
+# Upgrade pip
+RUN pip install --no-cache-dir --upgrade pip
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./app .
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5050"]
+CMD ["python", "app.py"]
