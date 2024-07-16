@@ -1,81 +1,28 @@
+<!-- app/templates/index.html -->
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>WHOIS Lookup</title>
-
 </head>
-
 <body>
-
     <h1>WHOIS Lookup</h1>
-
     <form action="/whois" method="post">
-
-        <label for="domain">Enter Domain:</label>
-
-        <input type="text" id="domain" name="domain" required>
-
+        <input type="text" name="domain" placeholder="Enter domain name">
         <button type="submit">Lookup</button>
-
     </form>
-
-
-
-    <div id="result">
-
-        <!-- Results will be displayed here -->
-
-    </div>
-
-
+    <div id="result"></div>
 
     <script>
-
-        // Handle form submission with AJAX
-
-        document.querySelector('form').addEventListener('submit', function(event) {
-
+        document.querySelector('form').onsubmit = async function(event) {
             event.preventDefault();
-
-            var domain = document.getElementById('domain').value;
-
-            fetch('/whois', {
-
+            const formData = new FormData(event.target);
+            const response = await fetch('/whois', {
                 method: 'POST',
-
-                headers: {
-
-                    'Content-Type': 'application/x-www-form-urlencoded'
-
-                },
-
-                body: 'domain=' + encodeURIComponent(domain)
-
-            })
-
-            .then(response => response.json())
-
-            .then(data => {
-
-                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
-
-            })
-
-            .catch(error => console.error('Error:', error));
-
-        });
-
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+        }
     </script>
-
 </body>
-
 </html>
-
-
