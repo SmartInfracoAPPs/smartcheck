@@ -13,11 +13,11 @@ RUN pip install --no-cache-dir --upgrade pip setuptools
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Define a build argument for the app path
+# Define a build argument for the app path (if necessary)
 ARG APP_PATH
 
 # Copy the entire application directory from host to the container
 COPY $APP_PATH /app
 
 # Command to run your application
-CMD ["python", "app/app.py"]
+CMD ["python", "app.py"]
