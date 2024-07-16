@@ -1,10 +1,25 @@
 version: '3.8'
+
 services:
   web:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "5050:5050"
+      - '5050:5050'
     environment:
-      FLASK_ENV: development
+      - FLASK_ENV=development
+      - FLASK_APP=app.py  # Adjust this to your main Flask file
     volumes:
       - ./app:/app
+    networks:
+      - app_network
+    restart: unless-stopped
+    container_name: web-app
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  app_data:
