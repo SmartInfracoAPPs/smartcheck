@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Define a build argument for the app path (if necessary)
+# Define a build argument for the app path
 ARG APP_PATH
 
 # Copy the entire application directory from host to the container
