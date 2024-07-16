@@ -2,29 +2,10 @@ version: '3.8'
 
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - APP_PATH=/data/coolify/applications/zg0ocw0/app
+    build: .
     ports:
-      - '5050:5050'
+      - "5050:5050"
     environment:
       - FLASK_ENV=development
-      - FLASK_APP=app.py  # Adjusted path to app.py
     volumes:
-      - '/data/coolify/applications/zg0ocw0/app:/app'  # Adjusted volume mapping
-    networks:
-      - app_network
-      - zg0ocw0
-    restart: unless-stopped
-    container_name: web-zg0ocw0-150706348101
-    labels:
-      - traefik.enable=true
-      # Add your Traefik labels here
-
-networks:
-  app_network:
-    driver: bridge
-  zg0ocw0:
-    external: true
+      - ./app:/app
